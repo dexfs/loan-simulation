@@ -10,22 +10,6 @@ public class InstallmentTax {
         this.value = value;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public float getValue() {
-        return value;
-    }
-
-    public void setValue(float value) {
-        this.value = value;
-    }
-
     @Override
     public String toString() {
         return "Tax{" +

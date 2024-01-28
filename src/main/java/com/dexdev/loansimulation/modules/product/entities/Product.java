@@ -1,7 +1,6 @@
 package com.dexdev.loansimulation.modules.product.entities;
 
 import java.util.List;
-import java.util.Set;
 
 
 public class Product {
@@ -27,15 +26,4 @@ public class Product {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
