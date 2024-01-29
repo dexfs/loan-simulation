@@ -1,6 +1,11 @@
 server:
   servlet:
     context-path: /api
+  error:
+    include-binding-errors: always
+    include-message: always
+
+
 
 logging:
   level:
@@ -9,3 +14,4 @@ logging:
 spring:
   jpa:
     show-sql: true
+
