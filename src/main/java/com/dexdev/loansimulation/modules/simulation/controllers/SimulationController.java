@@ -3,8 +3,7 @@ package com.dexdev.loansimulation.modules.simulation.controllers;
 import com.dexdev.loansimulation.modules.simulation.entities.Simulation;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/simulation")
@@ -12,6 +11,10 @@ public class SimulationController {
 
     @GetMapping("/client-id/{id}")
     public List<Simulation> getByClientId(@PathVariable int id) {
+
+
+
+
         return List.of(
                 new Simulation(
                         1,
