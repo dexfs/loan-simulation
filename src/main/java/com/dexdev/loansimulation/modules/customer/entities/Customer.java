@@ -1,8 +1,8 @@
-package com.dexdev.loansimulation.modules.client.entities;
+package com.dexdev.loansimulation.modules.customer.entities;
 
 import java.time.LocalDate;
 
-public class Client {
+public class Customer {
     private int id;
     private String name;
     private LocalDate birthDate;
@@ -10,7 +10,7 @@ public class Client {
     private String ssn;
     private String ssnType;
 
-    public Client(int id, String name, LocalDate birthDate, String ssn, String ssnType) {
+    public Customer(int id, String name, LocalDate birthDate, String ssn, String ssnType) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
