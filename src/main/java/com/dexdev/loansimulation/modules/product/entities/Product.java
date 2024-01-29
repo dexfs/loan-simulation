@@ -1,9 +1,10 @@
 package com.dexdev.loansimulation.modules.product.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 
-public class Product {
+public class Product implements Serializable  {
     private int id;
     private String name;
 
@@ -26,4 +27,7 @@ public class Product {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
 }
