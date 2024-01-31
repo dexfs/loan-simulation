@@ -7,12 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class InMemorySimulatioRepository {
-    private List<Simulation> simulations = new ArrayList<Simulation>();
+public class InMemorySimulatioRepository implements SimulationRepository{
+    private final List<Simulation> simulations = new ArrayList<>();
 
-    public Simulation save(Simulation simulation) {
+    public void save(Simulation simulation) {
         simulations.add(simulation);
-        return simulation;
     }
 
     public Simulation getById(int simulationId) {
