@@ -6,16 +6,16 @@ public class Simulation {
     private int id;
     private int clientId;
     private int amount;
-    private int instalments;
+    private int installments;
     private Date createdAt;
     private int productId;
 
-    public Simulation(int id, int clientId, int amount, int instalments, Date createdAt, int productId) {
+    public Simulation(int id, int clientId, int amount, int instalments, int productId) {
         this.id = id;
         this.clientId = clientId;
         this.amount = amount;
-        this.instalments = instalments;
-        this.createdAt = createdAt;
+        this.installments = instalments;
+        this.createdAt = new Date();
         this.productId = productId;
     }
 
@@ -43,12 +43,12 @@ public class Simulation {
         this.amount = amount;
     }
 
-    public int getInstalments() {
-        return instalments;
+    public int getInstallments() {
+        return installments;
     }
 
-    public void setInstalments(int instalments) {
-        this.instalments = instalments;
+    public void setInstallments(int installments) {
+        this.installments = installments;
     }
 
     public Date getCreatedAt() {
@@ -73,7 +73,7 @@ public class Simulation {
                 "id=" + id +
                 ", clientId=" + clientId +
                 ", amount=" + amount +
-                ", instalments=" + instalments +
+                ", instalments=" + installments +
                 ", createdAt=" + createdAt +
                 ", productId=" + productId +
                 '}';
