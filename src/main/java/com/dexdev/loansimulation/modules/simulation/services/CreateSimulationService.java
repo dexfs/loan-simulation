@@ -1,10 +1,14 @@
 package com.dexdev.loansimulation.modules.simulation.services;
 
+import com.dexdev.loansimulation.modules.customer.entities.Customer;
+import com.dexdev.loansimulation.modules.customer.repositories.InMemoryCustomerRepository;
 import com.dexdev.loansimulation.modules.product.entities.InstallmentTax;
+import com.dexdev.loansimulation.modules.product.entities.Product;
 import com.dexdev.loansimulation.modules.product.repositories.InMemoryProductRepository;
 import com.dexdev.loansimulation.modules.simulation.entities.Simulation;
 import com.dexdev.loansimulation.modules.simulation.entities.SimulationInstallment;
 import com.dexdev.loansimulation.modules.simulation.repositories.InMemorySimulatioRepository;
+import com.dexdev.loansimulation.shared.GenerateIDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,23 +20,37 @@ import java.util.List;
 @Service
 public class CreateSimulationService {
     @Autowired
+    GenerateIDService generateIDService;
+
+    @Autowired
     InMemorySimulatioRepository repository;
 
     @Autowired
     InMemoryProductRepository productRepository;
 
-    public Simulation execute(Simulation simulation, int installments) {
-        List<SimulationInstallment> simulationInstallments = calculate(simulation, installments);
+    @Autowired
+    InMemoryCustomerRepository customerRepository;
 
-        simulationInstallments.forEach(simulation::addInstallment);
+    public Simulation execute(Integer clientId, double amount, int installments) {
+        Product product = productRepository.getById(1);
+        Customer customer = customerRepository.getById(clientId);
+        Simulation newSimulation = new Simulation(
+                generateIDService.execute(),
+                customer,
+                amount,
+                product
+        );
+        List<SimulationInstallment> simulationInstallments = calculate(newSimulation, installments);
 
-        repository.save(simulation);
-        return simulation;
+        simulationInstallments.forEach(newSimulation::addInstallment);
+
+        repository.save(newSimulation);
+        return newSimulation;
     }
 
     private List<SimulationInstallment> calculate(Simulation simulation, int installments) {
         List<SimulationInstallment> simulationInstallments = new ArrayList<>();
-        List<InstallmentTax> taxes = productRepository.getInstallmentsByProductIdAndQuantity(simulation.getProductId(), installments);
+        List<InstallmentTax> taxes = productRepository.getInstallmentsByProductIdAndQuantity(simulation.getProduct().getId(), installments);
         taxes.forEach(tax -> {
             double installmentValue = calculateInstallmentValue(simulation.getAmount(), tax.getValue(), tax.getNumber());
             SimulationInstallment newSimulationInstallment = new SimulationInstallment(

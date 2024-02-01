@@ -19,8 +19,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/simulation")
 public class SimulationController {
-    @Autowired
-    GenerateIDService generateIDService;
+
 
     @Autowired
     CreateSimulationService createSimulationService;
@@ -35,13 +34,7 @@ public class SimulationController {
 
     @PostMapping()
     public ResponseEntity<Object> create(@Valid @RequestBody CreateSimulationRequest request) {
-        Simulation newSimulation = new Simulation(
-                generateIDService.execute(),
-                request.clientId,
-                request.amount,
-                1
-        );
-        createSimulationService.execute(newSimulation, request.installments);
+        Simulation newSimulation = createSimulationService.execute(request.clientId, request.amount, request.installments);
         UriComponents uriComponents = MvcUriComponentsBuilder
                 .fromMethodName(SimulationController.class, "getById", newSimulation.getId())
                 .build();
