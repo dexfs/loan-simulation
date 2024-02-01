@@ -38,10 +38,9 @@ public class SimulationController {
                 generateIDService.execute(),
                 request.clientId,
                 request.amount,
-                request.installments,
                 1
         );
-        createSimulationService.execute(newSimulation);
+        createSimulationService.execute(newSimulation, request.installments);
         UriComponents uriComponents = MvcUriComponentsBuilder
                 .fromMethodName(SimulationController.class, "getById", newSimulation.getId())
                 .build();

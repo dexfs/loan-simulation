@@ -1,20 +1,24 @@
 package com.dexdev.loansimulation.modules.simulation.entities;
 
+import com.dexdev.loansimulation.modules.product.entities.InstallmentTax;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Simulation {
     private int id;
     private int clientId;
-    private int amount;
-    private int installments;
+    private double amount;
+    private final List<SimulationInstallment> installments;
     private Date createdAt;
     private int productId;
 
-    public Simulation(int id, int clientId, int amount, int instalments, int productId) {
+    public Simulation(int id, int clientId, int amount, int productId) {
         this.id = id;
         this.clientId = clientId;
         this.amount = amount;
-        this.installments = instalments;
+        this.installments = new ArrayList<>();
         this.createdAt = new Date();
         this.productId = productId;
     }
@@ -35,7 +39,7 @@ public class Simulation {
         this.clientId = clientId;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
@@ -43,12 +47,12 @@ public class Simulation {
         this.amount = amount;
     }
 
-    public int getInstallments() {
+    public List<SimulationInstallment> getInstallments() {
         return installments;
     }
 
-    public void setInstallments(int installments) {
-        this.installments = installments;
+    public void addInstallment(SimulationInstallment installment) {
+        installments.add(installment);
     }
 
     public Date getCreatedAt() {
@@ -72,7 +76,7 @@ public class Simulation {
         return "Simulation{" +
                 "id=" + id +
                 ", clientId=" + clientId +
-                ", amount=" + amount +
+                ", total=" + amount +
                 ", instalments=" + installments +
                 ", createdAt=" + createdAt +
                 ", productId=" + productId +
