@@ -44,7 +44,22 @@ public class InMemoryProductRepository implements ProductRepository {
     }
 
     public InstallmentTax getInstallmentByIdAndProduct(Integer productId, Integer installment) {
-        Product foundProduct = products.get(productId-1);
-        return foundProduct.getTaxes().get(installment-1);
+        Product foundProduct = products
+                .stream()
+                .filter(p -> p.getId() == productId)
+                .findFirst()
+                .orElseThrow();
+
+        return foundProduct.getTaxes().stream().filter(t -> t.getNumber() == installment).findFirst().orElseThrow();
+    }
+
+    public List<InstallmentTax> getInstallmentsByProductIdAndQuantity(Integer productId, Integer numberOf) {
+        Product foundProduct = products
+                .stream()
+                .filter(p -> p.getId() == productId)
+                .findFirst()
+                .orElseThrow();
+
+        return foundProduct.getTaxes().stream().limit(numberOf).toList();
     }
 }
