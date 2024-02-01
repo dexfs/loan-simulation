@@ -1,4 +1,4 @@
-package com.dexdev.loansimulation.modules.simulation.controllers.validations;
+package com.dexdev.loansimulation.modules.simulation.controllers.dtos;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

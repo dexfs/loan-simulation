@@ -1,6 +1,7 @@
 package com.dexdev.loansimulation.modules.simulation.controllers;
 
-import com.dexdev.loansimulation.modules.simulation.controllers.validations.CreateSimulationRequest;
+import com.dexdev.loansimulation.modules.simulation.controllers.dtos.CreateSimulationRequest;
+import com.dexdev.loansimulation.modules.simulation.controllers.dtos.CreateSimulationResponse;
 import com.dexdev.loansimulation.modules.simulation.entities.Simulation;
 import com.dexdev.loansimulation.modules.simulation.services.CreateSimulationService;
 import com.dexdev.loansimulation.modules.simulation.services.GetSimulationByIdService;
@@ -47,7 +48,7 @@ public class SimulationController {
 
         return ResponseEntity
                 .created(uriComponents.encode().toUri())
-                .body(newSimulation);
+                .body(CreateSimulationResponse.create(newSimulation));
 
     }
 
