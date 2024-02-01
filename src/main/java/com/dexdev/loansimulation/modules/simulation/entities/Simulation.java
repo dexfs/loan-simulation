@@ -1,32 +1,35 @@
 package com.dexdev.loansimulation.modules.simulation.entities;
 
+import com.dexdev.loansimulation.modules.customer.entities.Customer;
+import com.dexdev.loansimulation.modules.product.entities.Product;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Simulation {
     private final int id;
-    private final int clientId;
+    private final Customer customer;
     private final double amount;
     private final List<SimulationInstallment> installments;
     private final LocalDateTime createdAt;
-    private final int productId;
+    private final Product product;
 
-    public Simulation(int id, int clientId, int amount, int productId) {
+    public Simulation(int id, Customer customer, double amount, Product product) {
         this.id = id;
-        this.clientId = clientId;
+        this.customer = customer;
         this.amount = amount;
         this.installments = new ArrayList<>();
         this.createdAt = LocalDateTime.now();
-        this.productId = productId;
+        this.product = product;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getClientId() {
-        return clientId;
+    public Customer getCustomer() {
+        return customer;
     }
 
     public double getAmount() {
@@ -45,21 +48,20 @@ public class Simulation {
         return createdAt;
     }
 
-    public int getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
-
 
 
     @Override
     public String toString() {
         return "Simulation{" +
                 "id=" + id +
-                ", clientId=" + clientId +
+                ", clientId=" + customer +
                 ", total=" + amount +
                 ", instalments=" + installments +
                 ", createdAt=" + createdAt +
-                ", productId=" + productId +
+                ", product=" + product +
                 '}';
     }
 }
