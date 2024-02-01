@@ -1,7 +1,5 @@
 package com.dexdev.loansimulation.modules.simulation.entities;
 
-import com.dexdev.loansimulation.modules.product.entities.InstallmentTax;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
