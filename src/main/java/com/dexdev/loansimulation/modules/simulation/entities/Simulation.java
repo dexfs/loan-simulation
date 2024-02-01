@@ -1,23 +1,23 @@
 package com.dexdev.loansimulation.modules.simulation.entities;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Simulation {
-    private int id;
-    private int clientId;
-    private double amount;
+    private final int id;
+    private final int clientId;
+    private final double amount;
     private final List<SimulationInstallment> installments;
-    private Date createdAt;
-    private int productId;
+    private final LocalDateTime createdAt;
+    private final int productId;
 
     public Simulation(int id, int clientId, int amount, int productId) {
         this.id = id;
         this.clientId = clientId;
         this.amount = amount;
         this.installments = new ArrayList<>();
-        this.createdAt = new Date();
+        this.createdAt = LocalDateTime.now();
         this.productId = productId;
     }
 
@@ -25,24 +25,12 @@ public class Simulation {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getClientId() {
         return clientId;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
-
     public double getAmount() {
         return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
     }
 
     public List<SimulationInstallment> getInstallments() {
@@ -53,21 +41,15 @@ public class Simulation {
         installments.add(installment);
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
     }
 
     public int getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
+
 
     @Override
     public String toString() {
