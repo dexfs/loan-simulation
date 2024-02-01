@@ -1,5 +1,6 @@
 package com.dexdev.loansimulation.modules.simulation.controllers.validations;
 
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
@@ -13,6 +14,7 @@ public class CreateSimulationRequest implements Serializable {
     public Integer amount;
     @NotNull
     @Min(1)
+    @Max(12)
     public Integer installments;
 
 }
