@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 public class InstallmentTax implements Serializable {
     private int number;
-    private float value;
+    private double value;
 
     public InstallmentTax(int instalmentNumber, float value) {
         this.number = instalmentNumber;
@@ -20,11 +20,11 @@ public class InstallmentTax implements Serializable {
         this.number = number;
     }
 
-    public float getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(float value) {
+    public void setValue(double value) {
         this.value = value;
     }
 
