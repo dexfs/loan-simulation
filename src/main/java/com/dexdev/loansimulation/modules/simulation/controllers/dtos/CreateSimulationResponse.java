@@ -1,5 +1,6 @@
 package com.dexdev.loansimulation.modules.simulation.controllers.dtos;
 
+import com.dexdev.loansimulation.modules.customer.entities.Customer;
 import com.dexdev.loansimulation.modules.simulation.entities.Simulation;
 import com.dexdev.loansimulation.modules.simulation.entities.SimulationInstallment;
 
@@ -9,18 +10,16 @@ import java.util.List;
 
 public class CreateSimulationResponse {
     private final int id;
-    private final int clientId;
+    private final Customer customer;
     private final double amount;
     private final List<SimulationInstallment> installments;
-    private final int productId;
     private final String created_at;
 
-    private CreateSimulationResponse(int id, int clientId, double amount, List<SimulationInstallment> installments, LocalDateTime createdAt, int productId) {
+    private CreateSimulationResponse(int id, Customer customer, double amount, List<SimulationInstallment> installments, LocalDateTime createdAt) {
         this.id = id;
-        this.clientId = clientId;
+        this.customer = customer;
         this.amount = amount;
         this.installments = installments;
-        this.productId = productId;
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss");
         created_at = createdAt.format(dtf);
     }
@@ -28,11 +27,10 @@ public class CreateSimulationResponse {
     public static CreateSimulationResponse create(Simulation simulation) {
         return new CreateSimulationResponse(
                 simulation.getId(),
-                simulation.getClientId(),
+                simulation.getCustomer(),
                 simulation.getAmount(),
                 simulation.getInstallments(),
-                simulation.getCreatedAt(),
-                simulation.getProductId()
+                simulation.getCreatedAt()
         );
     }
 
@@ -40,8 +38,8 @@ public class CreateSimulationResponse {
         return id;
     }
 
-    public int getClientId() {
-        return clientId;
+    public Customer getCustomer() {
+        return customer;
     }
 
     public double getAmount() {
@@ -52,9 +50,6 @@ public class CreateSimulationResponse {
         return installments;
     }
 
-    public int getProductId() {
-        return productId;
-    }
 
     public String getCreated_at() {
         return created_at;
