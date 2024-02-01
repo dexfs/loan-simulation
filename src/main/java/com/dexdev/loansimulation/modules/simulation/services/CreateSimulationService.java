@@ -22,7 +22,7 @@ public class CreateSimulationService {
     InMemoryProductRepository productRepository;
 
     public Simulation execute(Simulation simulation, int installments) {
-        List<SimulationInstallment> simulationInstallments = calculateAndCreateSimulationInstallments(simulation, installments);
+        List<SimulationInstallment> simulationInstallments = calculate(simulation, installments);
 
         simulationInstallments.forEach(simulation::addInstallment);
 
@@ -30,18 +30,17 @@ public class CreateSimulationService {
         return simulation;
     }
 
-    private List<SimulationInstallment> calculateAndCreateSimulationInstallments(Simulation simulation, int installmentQuantity) {
+    private List<SimulationInstallment> calculate(Simulation simulation, int installments) {
         List<SimulationInstallment> simulationInstallments = new ArrayList<>();
-        for (int installmentNumber = 1; installmentNumber <= installmentQuantity; installmentNumber++) {
-            InstallmentTax tax = productRepository.getInstallmentByIdAndProduct(simulation.getProductId(), installmentNumber);
-            if (tax == null) break;
-            double installmentValue = calculateInstallmentValue(simulation.getAmount(), tax.getValue(), installmentNumber);
+        List<InstallmentTax> taxes = productRepository.getInstallmentsByProductIdAndQuantity(simulation.getProductId(), installments);
+        taxes.forEach(tax -> {
+            double installmentValue = calculateInstallmentValue(simulation.getAmount(), tax.getValue(), tax.getNumber());
             SimulationInstallment newSimulationInstallment = new SimulationInstallment(
-                    installmentNumber,
+                    tax.getNumber(),
                     installmentValue
             );
             simulationInstallments.add(newSimulationInstallment);
-        }
+        });
 
         return simulationInstallments;
     }
