@@ -34,7 +34,7 @@ public class CustomerController {
                 request.ssnType
         );
         createUserService.execute(newCustomer);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(newCustomer);
     }
 
     @GetMapping()
