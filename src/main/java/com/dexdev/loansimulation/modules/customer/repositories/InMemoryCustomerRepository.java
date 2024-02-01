@@ -23,4 +23,11 @@ public class InMemoryCustomerRepository implements CustomerRepository<Customer> 
     public void save(Customer customer) {
         customers.add(customer);
     }
+
+    public Customer getById(int clientId) {
+        return customers.stream()
+                .filter(c -> c.getId() == clientId)
+                .findFirst()
+                .orElseThrow();
+    }
 }
