@@ -11,7 +11,7 @@ public class CreateSimulationRequest implements Serializable {
     public Integer clientId;
     @NotNull
     @Min(1000)
-    public Integer amount;
+    public double amount;
     @NotNull
     @Min(1)
     @Max(12)
