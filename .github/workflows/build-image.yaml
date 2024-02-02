@@ -20,7 +20,7 @@ jobs:
 
   build-and-push-image:
     if: ${{ success() }}
-    needs: [ unit-test ]
+    needs: [ test ]
     runs-on: ubuntu-latest
     permissions:
       contents: read
