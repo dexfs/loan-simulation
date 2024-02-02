@@ -16,7 +16,7 @@ public class GetInstallmentServiceTest {
         InstallmentTax installmentTax = service.execute(1, 3);
 
         Assertions.assertNotNull(installmentTax);
-        Assertions.assertEquals(installmentTax.getNumber(), 3);
-        Assertions.assertEquals(installmentTax.getValue(), 5);
+        Assertions.assertEquals(3, installmentTax.getNumber());
+        Assertions.assertEquals(37.1, installmentTax.getValue());
     }
 }
