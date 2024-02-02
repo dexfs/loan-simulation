@@ -1,7 +1,7 @@
 
 
 # Loan Simulation
-[![Loan Simulation](https://github.com/dexfs/loan-simulation/actions/workflows/build-image.yaml/badge.svg?branch=master)](https://github.com/dexfs/loan-simulation/actions/workflows/build-prd.yaml)
+[![Create and publish a Docker image](https://github.com/dexfs/loan-simulation/actions/workflows/build-prd.yaml/badge.svg)](https://github.com/dexfs/loan-simulation/actions/workflows/build-prd.yaml)
 
 The API will provide a loan simulation given a value the customer needs.
 
