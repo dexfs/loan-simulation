@@ -17,6 +17,11 @@ jobs:
           distribution: 'temurin'
       - name: Run the Maven verify phase
         run: mvn --batch-mode --update-snapshots verify
+      - run: mkdir staging && cp target/*.jar staging
+      - uses: actions/upload-artifacts@v4
+        with:
+          name: Package
+          path: staging
 
   build-and-push-image:
     if: ${{ success() }}
@@ -41,9 +46,14 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
+      - name: Downlaod package artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: Package
+
       - name: Build and push Docker image
-        run: mvn package
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        run: mkdir target && cp staging/*.jar target
         with:
           context: .
           push: true
