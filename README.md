@@ -1,12 +1,14 @@
 
+
 # Loan Simulation
+[![Loan Simulation](https://github.com/dexfs/loan-simulation/actions/workflows/build-image.yaml/badge.svg?branch=master)](https://github.com/dexfs/loan-simulation/actions/workflows/build-image.yaml)
 
 The API will provide a loan simulation given a value the customer needs.
 
 The API will return the installments of this loan.
 
 
-[![.github/workflows/github-actions.yaml](https://github.com/dexfs/loan-simulation/actions/workflows/github-actions.yaml/badge.svg)](https://github.com/dexfs/loan-simulation/actions/workflows/github-actions.yaml)
+
 
 # Flow
 
