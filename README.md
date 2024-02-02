@@ -20,5 +20,17 @@ $ java -jar target/loan-simulation-0.0.1-SNAPSHOT.jar
 
 ```
 
+# Docker
+
+```bash
+$ docker build -t org/app .
+$ docker run -p 8080:8080 myorg/myapp  
+
+```
+
+
+
+
+
 
 
