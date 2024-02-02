@@ -1,9 +1,6 @@
 name: Create and publish a Docker image
 run-name: ${{ github.actor }} is building the application image 🚀
-on:
-  push:
-    branches:
-      - master
+on: [release]
 
 env:
   REGISTRY: ghcr.io
