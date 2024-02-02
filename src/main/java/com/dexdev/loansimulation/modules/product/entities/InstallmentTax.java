@@ -2,6 +2,8 @@ package com.dexdev.loansimulation.modules.product.entities;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class InstallmentTax implements Serializable {
     private int number;
@@ -9,7 +11,7 @@ public class InstallmentTax implements Serializable {
 
     public InstallmentTax(int instalmentNumber, float value) {
         this.number = instalmentNumber;
-        this.value = value;
+        this.value = BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_EVEN).doubleValue();
     }
 
     public int getNumber() {
