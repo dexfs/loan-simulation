@@ -3,11 +3,11 @@ run-name: ${{ github.actor }} is building the application image 🚀
 on:
   push:
     branches:
-      - 'develop/**'
+      - develop
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: latest
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   test:
