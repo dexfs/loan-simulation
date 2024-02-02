@@ -2,10 +2,13 @@ package com.dexdev.loansimulation.modules.customer.repositories;
 
 import com.dexdev.loansimulation.modules.customer.entities.Customer;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.ErrorResponse;
+import org.springframework.web.ErrorResponseException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class InMemoryCustomerRepository implements CustomerRepository<Customer> {
@@ -24,10 +27,10 @@ public class InMemoryCustomerRepository implements CustomerRepository<Customer> 
         customers.add(customer);
     }
 
-    public Customer getById(int clientId) {
+    public Optional<Customer> getById(int clientId) {
         return customers.stream()
                 .filter(c -> c.getId() == clientId)
-                .findFirst()
-                .orElseThrow();
+                .findFirst();
+
     }
 }

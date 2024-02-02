@@ -1,9 +1,11 @@
 package com.dexdev.loansimulation.modules.simulation.services;
 
 import com.dexdev.loansimulation.modules.customer.entities.Customer;
+import com.dexdev.loansimulation.modules.customer.exceptions.CustomerNotFoundException;
 import com.dexdev.loansimulation.modules.customer.repositories.InMemoryCustomerRepository;
 import com.dexdev.loansimulation.modules.product.entities.InstallmentTax;
 import com.dexdev.loansimulation.modules.product.entities.Product;
+import com.dexdev.loansimulation.modules.product.exceptions.ProductNotFoundException;
 import com.dexdev.loansimulation.modules.product.repositories.InMemoryProductRepository;
 import com.dexdev.loansimulation.modules.simulation.entities.Simulation;
 import com.dexdev.loansimulation.modules.simulation.entities.SimulationInstallment;
@@ -16,6 +18,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CreateSimulationService {
@@ -32,13 +35,21 @@ public class CreateSimulationService {
     InMemoryCustomerRepository customerRepository;
 
     public Simulation execute(Integer clientId, double amount, int installments) {
-        Product product = productRepository.getById(1);
-        Customer customer = customerRepository.getById(clientId);
+        Optional<Product> product = productRepository.getById(1);
+        if (product.isEmpty()) {
+            throw new ProductNotFoundException();
+        }
+        Optional<Customer> customer = customerRepository.getById(clientId);
+
+        if (customer.isEmpty()) {
+            throw new CustomerNotFoundException(clientId);
+        }
+
         Simulation newSimulation = new Simulation(
                 generateIDService.execute(),
-                customer,
+                customer.get(),
                 amount,
-                product
+                product.get()
         );
         List<SimulationInstallment> simulationInstallments = calculate(newSimulation, installments);
 

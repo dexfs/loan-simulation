@@ -14,19 +14,19 @@ public class InMemoryProductRepository implements ProductRepository {
         Product product = new Product(1, "EasyMoney");
         List<InstallmentTax> taxes = Arrays
                 .asList(
-                new InstallmentTax(1, 25),
-                new InstallmentTax(2, 37.1f),
-                new InstallmentTax(3, 37.1f),
-                new InstallmentTax(4, 39),
-                new InstallmentTax(5, 39),
-                new InstallmentTax(6, 39),
-                new InstallmentTax(7, 39),
-                new InstallmentTax(8, 39),
-                new InstallmentTax(9, 39),
-                new InstallmentTax(10, 39),
-                new InstallmentTax(11, 39),
-                new InstallmentTax(12, 39)
-        );
+                        new InstallmentTax(1, 25),
+                        new InstallmentTax(2, 37.1f),
+                        new InstallmentTax(3, 37.1f),
+                        new InstallmentTax(4, 39),
+                        new InstallmentTax(5, 39),
+                        new InstallmentTax(6, 39),
+                        new InstallmentTax(7, 39),
+                        new InstallmentTax(8, 39),
+                        new InstallmentTax(9, 39),
+                        new InstallmentTax(10, 39),
+                        new InstallmentTax(11, 39),
+                        new InstallmentTax(12, 39)
+                );
 
         product.setTaxes(taxes);
         products.add(product);
@@ -36,21 +36,21 @@ public class InMemoryProductRepository implements ProductRepository {
         return products;
     }
 
-    public Product getById(int productId) {
+    public Optional<Product> getById(int productId) {
         return products.stream()
                 .filter(p -> p.getId() == productId)
-                .findFirst()
-                .orElse(null);
+                .findFirst();
     }
 
     public InstallmentTax getInstallmentByIdAndProduct(Integer productId, Integer installment) {
-        Product foundProduct = products
+        Optional<Product> foundProduct = products
                 .stream()
                 .filter(p -> p.getId() == productId)
-                .findFirst()
-                .orElseThrow();
+                .findFirst();
 
-        return foundProduct.getTaxes().stream().filter(t -> t.getNumber() == installment).findFirst().orElseThrow();
+        return foundProduct
+                .flatMap(product -> product.getTaxes().stream().filter(t -> t.getNumber() == installment).findFirst())
+                .orElse(null);
     }
 
     public List<InstallmentTax> getInstallmentsByProductIdAndQuantity(Integer productId, Integer numberOf) {
