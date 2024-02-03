@@ -4,9 +4,11 @@ import com.dexdev.loansimulation.modules.customer.controllers.validations.Create
 import com.dexdev.loansimulation.modules.customer.entities.Customer;
 import com.dexdev.loansimulation.modules.customer.services.AllCustomersService;
 import com.dexdev.loansimulation.modules.customer.services.CreateUserService;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,7 @@ import java.util.Random;
 
 @RestController()
 @RequestMapping("/customers")
+@Tag(name = "Customer Rest Endpoint")
 public class CustomerController {
     @Autowired
     AllCustomersService allCustomersService;
@@ -24,7 +27,7 @@ public class CustomerController {
     CreateUserService createUserService;
 
     @PostMapping()
-    public ResponseEntity create(@Valid @RequestBody CreateCustomerRequest request) {
+    public @ApiResponse(responseCode = "201") ResponseEntity<Customer> create(@Valid @RequestBody CreateCustomerRequest request) {
         Random rand = new Random();
         Customer newCustomer = new Customer(
                 Math.abs(rand.nextInt()),
