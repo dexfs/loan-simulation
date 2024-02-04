@@ -2,8 +2,6 @@ package com.dexdev.loansimulation.modules.customer.repositories;
 
 import com.dexdev.loansimulation.modules.customer.entities.Customer;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.ErrorResponse;
-import org.springframework.web.ErrorResponseException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
