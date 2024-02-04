@@ -1,4 +1,4 @@
-package com.dexdev.loansimulation.modules.simulation.controllers.dtos;
+package com.dexdev.loansimulation.modules.simulation.controllers.request;
 
 import com.dexdev.loansimulation.modules.customer.entities.Customer;
 import com.dexdev.loansimulation.modules.simulation.entities.Simulation;
