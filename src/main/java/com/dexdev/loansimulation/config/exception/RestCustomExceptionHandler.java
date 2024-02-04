@@ -27,7 +27,6 @@ public class RestCustomExceptionHandler extends ResponseEntityExceptionHandler {
                 .getFieldErrors()
                 .stream()
                 .map(x -> x.getField() + " " + x.getDefaultMessage())
-//                .map(x -> x.getDefaultMessage())
                 .toList();
 
         ApiErrorMessage apiErrorMessage = new ApiErrorMessage((HttpStatus) status, errors);
