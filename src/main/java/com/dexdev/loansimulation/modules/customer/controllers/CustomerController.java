@@ -1,6 +1,6 @@
 package com.dexdev.loansimulation.modules.customer.controllers;
 
-import com.dexdev.loansimulation.modules.customer.controllers.validations.CreateCustomerRequest;
+import com.dexdev.loansimulation.modules.customer.controllers.request.CreateCustomerRequest;
 import com.dexdev.loansimulation.modules.customer.entities.Customer;
 import com.dexdev.loansimulation.modules.customer.services.AllCustomersService;
 import com.dexdev.loansimulation.modules.customer.services.CreateUserService;
@@ -32,7 +32,7 @@ public class CustomerController {
         Customer newCustomer = new Customer(
                 Math.abs(rand.nextInt()),
                 request.name,
-                LocalDate.parse(request.birthDate),
+                LocalDate.parse(request.birthDate.toString()),
                 request.ssn,
                 request.ssnType
         );
