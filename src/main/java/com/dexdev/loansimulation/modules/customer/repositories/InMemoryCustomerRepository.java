@@ -15,7 +15,7 @@ public class InMemoryCustomerRepository implements CustomerRepository<Customer> 
     List<Customer> customers = new ArrayList<>();
 
     public InMemoryCustomerRepository() {
-        Customer customer = new Customer(1, "Andre", LocalDate.parse("1983-08-25"), "123455", "CPF");
+        Customer customer = new Customer(1, "Test", LocalDate.parse("1983-01-01"), "123455", "RG");
         customers.add(customer);
     }
 
